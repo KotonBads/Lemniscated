@@ -30,3 +30,7 @@ class Jon:
             User.warn('You can\'t send that thing')
         else:
             pass
+    def warn(self):
+        User.warn('Just don\'t...')
+    def pardon(self):
+        User.pardon()
