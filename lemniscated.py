@@ -1,3 +1,4 @@
+#this is where the variables live :)
 messages = []
 chat = [' ']
 message = ' '
