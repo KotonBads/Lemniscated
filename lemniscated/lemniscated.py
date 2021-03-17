@@ -1,4 +1,17 @@
-
+class Guild:
+    def __init__(self):
+        self.members = open('lemniscated\members.txt', 'r')
+        self.banned = open('lemniscated\\banned.txt')
+        self.lines = self.members.readlines()
+    
+    def add_member(self, username):
+        with open('lemniscated\members.txt', 'a') as f:
+            f.write(f'{username}\n')
+    
+    def kick_member(self, username):
+        for line in self.lines:
+            if line.strip('\n') != username:
+                self.members.write(line) #doesn't work yet lmao
 
 class Chat:
     def __init__(self, message):
@@ -16,7 +29,7 @@ class Chat:
         print('@everyone')
 
 class User:
-    def __init__(self, message, role):
+    def __init__(self, username, role):
         self.isMuted = False
         self.canChat = True
         self.isBanned = False
@@ -24,6 +37,8 @@ class User:
         self.mute_time = 0
         self.warn_reason = []
         self.role = role
+
+    def send_message(self, message):
         self.message = message
 
     def warn(self, reason):
@@ -68,3 +83,6 @@ class Jon:
     def mute_member(self, time):
         if self.isMad:
             User.mute(time)
+
+guild = Guild()
+guild.add_member('test')
