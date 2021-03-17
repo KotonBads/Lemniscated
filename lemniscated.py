@@ -1,10 +1,14 @@
 class Chat:
     def __init__(self, message):
         self.message = message
-        self.chat_file_w = open('lemniscated\chat.txt', 'w')
     
     def save_chat(self):
-        self.chat_file_w.write(self.message)
+        with open('chat.txt', 'w') as f:
+            f.write(self.message)
+    
+    def purge_chat(self, amount):
+        with open('chat.txt', 'w') as f:
+            f.writelines(lines[:-amount])
 
 class User:
     warnings = 0
@@ -39,7 +43,7 @@ class Jon:
 
     def purge(self, amount):
         if self.isMad:
-            
+            Chat.purge_chat(amount)
             User.warn('You can\'t send that thing')
         else:
             pass
